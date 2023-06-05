@@ -73,6 +73,13 @@ function showResult(total_questions) {
     console.log(questions.length)
     total_questions = parseInt(total_questions);
 
+     // Check if the score is equal to the total number of questions
+      if (score === total_questions) {
+        // Pass a congratulatory message to the result page
+        const congratulatoryMessage = "Congratulations! You scored perfectly!";
+        localStorage.setItem("congratulatoryMessage", congratulatoryMessage);
+      }
+      
     const url = `/result/${score}/${parseInt(total_questions)}/${encodeURIComponent(JSON.stringify(correctAnswers))}`;
     window.location.href = url;
 }

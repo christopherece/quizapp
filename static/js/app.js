@@ -1,3 +1,18 @@
+   // Your existing JavaScript code for other functionalities
+
+   document.addEventListener("DOMContentLoaded", function() {
+    // Retrieve the congratulatory message from localStorage
+    const congratulatoryMessage = localStorage.getItem("congratulatoryMessage");
+
+    if (congratulatoryMessage) {
+      // Display the congratulatory message on the page
+      document.getElementById("congratulatoryMessage").textContent = congratulatoryMessage;
+
+      // Clear the congratulatory message from localStorage
+      localStorage.removeItem("congratulatoryMessage");
+    }
+  });
+
 const date = new Date();
 document.querySelector('.year').innerHTML = date.getFullYear();
 
@@ -72,6 +87,13 @@ function showResult(total_questions) {
     // Redirect to the result page with parameters
     console.log(questions.length)
     total_questions = parseInt(total_questions);
+
+     // Check if the score is equal to the total number of questions
+      if (score === total_questions) {
+        // Pass a congratulatory message to the result page
+        const congratulatoryMessage = "Congratulations! You scored perfectly!";
+        localStorage.setItem("congratulatoryMessage", congratulatoryMessage);
+      }
 
     const url = `/result/${score}/${parseInt(total_questions)}/${encodeURIComponent(JSON.stringify(correctAnswers))}`;
     window.location.href = url;
